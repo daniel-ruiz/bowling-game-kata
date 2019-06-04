@@ -66,3 +66,35 @@ func TestReturnsFrameScore(t *testing.T) {
 		t.Errorf("Expected frame score to be %d. Got %d instead.", expectedScore, score)
 	}
 }
+
+func TestIsSpareWhenFirstRollIsLessThanTenButRollsSumTen(t *testing.T) {
+	frame := new(Frame)
+
+	frame.Roll(0)
+	frame.Roll(10)
+
+	if !frame.IsSpare() {
+		t.Error("Expected frame to be a spare, but it isn't.")
+	}
+}
+
+func TestIsNotSpare(t *testing.T) {
+	cases := [][2]int{
+		{0, 0},
+		{10, 0},
+		{2, 3},
+		{7, 2},
+	}
+
+	for _, rolls := range cases {
+		frame := new(Frame)
+
+		for _, pinsDown := range rolls {
+			frame.Roll(pinsDown)
+		}
+
+		if frame.IsSpare() {
+			t.Error("Expected frame not to be a spare, but it is.")
+		}
+	}
+}

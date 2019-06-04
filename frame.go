@@ -1,5 +1,7 @@
 package bowlingkata
 
+const maxFrameScore int = 10
+
 // Frame represents every frame in a bowling game.
 type Frame struct {
 	rolls     [2]int
@@ -26,4 +28,9 @@ func (frame *Frame) Score() int {
 	}
 
 	return score
+}
+
+// IsSpare determines if a frame is a spare.
+func (frame *Frame) IsSpare() bool {
+	return frame.rolls[0] < maxFrameScore && frame.Score() == maxFrameScore
 }

@@ -1,4 +1,4 @@
-package game
+package bowlingkata
 
 type game struct {
 	score int

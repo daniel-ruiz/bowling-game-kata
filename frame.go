@@ -46,6 +46,9 @@ func (frame *Frame) IsStrike() bool {
 
 // Bonus calculates bonus of a frame given its next frame in the game.
 func (frame *Frame) Bonus(nextFrame Frame) int {
+	if frame.IsStrike() {
+		return nextFrame.Score()
+	}
 	if frame.IsSpare() {
 		return nextFrame.rolls[0]
 	}

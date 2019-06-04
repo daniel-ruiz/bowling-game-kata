@@ -185,3 +185,18 @@ func TestIsNotStrike(t *testing.T) {
 		}
 	}
 }
+
+func TestBonusIsTheScoreOfTheNextFrameWhenFrameIsStrike(t *testing.T) {
+	nextFrame := new(Frame)
+	nextFrame.Roll(5)
+	nextFrame.Roll(4)
+	frame := new(Frame)
+	frame.Roll(10)
+	expectedBonus := 9
+
+	actualBonus := frame.Bonus(*nextFrame)
+
+	if actualBonus != expectedBonus {
+		t.Errorf("Expected bonus to be %d. Got %d instead.", expectedBonus, actualBonus)
+	}
+}

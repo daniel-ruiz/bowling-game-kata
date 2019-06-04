@@ -16,15 +16,11 @@ func (frame *Frame) Roll(pinsDown int) {
 
 	frame.rolls[frame.rollCount] = pinsDown
 	frame.rollCount++
-
-	if pinsDown == maxFrameScore {
-		frame.rollCount = 2
-	}
 }
 
 // IsComplete determines if a frame has finished
 func (frame *Frame) IsComplete() bool {
-	return frame.rollCount == 2
+	return frame.IsStrike() || (frame.rollCount == 2)
 }
 
 // Score calculates total score of a frame.

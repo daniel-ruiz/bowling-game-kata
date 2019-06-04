@@ -5,8 +5,8 @@ type game struct {
 }
 
 // New initializes the game struct.
-func New() game {
-	game := game{}
+func New() *game {
+	game := &game{}
 	return game
 }
 

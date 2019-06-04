@@ -11,3 +11,8 @@ func (frame *Frame) Roll(pinsDown int) {
 	frame.rolls[frame.rollCount] = pinsDown
 	frame.rollCount++
 }
+
+// IsComplete determines if a frame has finished
+func (frame *Frame) IsComplete() bool {
+	return frame.rollCount == 2
+}

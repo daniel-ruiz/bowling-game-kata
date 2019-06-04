@@ -29,3 +29,27 @@ func TestUpdatesFrameWhenRolling(t *testing.T) {
 		t.Errorf("Number of pins down in first roll must be %d. Got %d instead.", pinsDown, firstRoll)
 	}
 }
+
+func TestFrameIsCompleteAfterTwoRolls(t *testing.T) {
+	frame := new(Frame)
+
+	frame.Roll(1)
+	frame.Roll(2)
+
+	if !frame.IsComplete() {
+		t.Error("Frame must be complete after 2 rolls, but it isn't.")
+	}
+}
+
+func TestFrameIsNotComplete(t *testing.T) {
+	frame := new(Frame)
+
+	if frame.IsComplete() {
+		t.Error("Frame must not be complete when no rolls are made, but it is.")
+	}
+
+	frame.Roll(7)
+	if frame.IsComplete() {
+		t.Error("Frame must not be complete after the first roll, but it is.")
+	}
+}

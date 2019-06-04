@@ -60,5 +60,11 @@ func (frame *Frame) calculateBonusForSpare(nextFrame Frame) int {
 }
 
 func (frame *Frame) calculateBonusForStrike(nextFrames ...Frame) int {
-	return nextFrames[0].Score()
+	bonus := nextFrames[0].Score()
+
+	if nextFrames[0].IsStrike() {
+		bonus += nextFrames[1].rolls[0]
+	}
+
+	return bonus
 }

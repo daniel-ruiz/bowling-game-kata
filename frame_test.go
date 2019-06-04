@@ -200,3 +200,21 @@ func TestBonusIsTheScoreOfTheNextFrameWhenFrameIsStrike(t *testing.T) {
 		t.Errorf("Expected bonus to be %d. Got %d instead.", expectedBonus, actualBonus)
 	}
 }
+
+func TestBonusIsCalculatedWhenThereAreTwoStrikesInARow(t *testing.T) {
+	nextFrame := new(Frame)
+	nextFrame.Roll(10)
+	secondNextFrame := new(Frame)
+	secondNextFrame.Roll(2)
+	secondNextFrame.Roll(6)
+	frame := new(Frame)
+	frame.Roll(10)
+	expectedBonus := 12
+
+	actualBonus := frame.Bonus(*nextFrame, *secondNextFrame)
+
+	if actualBonus != expectedBonus {
+		t.Errorf("Expected bonus to be %d. Got %d instead.", expectedBonus, actualBonus)
+	}
+
+}

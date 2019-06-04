@@ -45,12 +45,12 @@ func (frame *Frame) IsStrike() bool {
 }
 
 // Bonus calculates bonus of a frame given its next frame in the game.
-func (frame *Frame) Bonus(nextFrame Frame) int {
+func (frame *Frame) Bonus(nextFrames ...Frame) int {
 	if frame.IsStrike() {
-		return frame.calculateBonusForStrike(nextFrame)
+		return frame.calculateBonusForStrike(nextFrames...)
 	}
 	if frame.IsSpare() {
-		return frame.calculateBonusForSpare(nextFrame)
+		return frame.calculateBonusForSpare(nextFrames[0])
 	}
 	return 0
 }
@@ -59,6 +59,6 @@ func (frame *Frame) calculateBonusForSpare(nextFrame Frame) int {
 	return nextFrame.rolls[0]
 }
 
-func (frame *Frame) calculateBonusForStrike(nextFrame Frame) int {
-	return nextFrame.Score()
+func (frame *Frame) calculateBonusForStrike(nextFrames ...Frame) int {
+	return nextFrames[0].Score()
 }

@@ -194,7 +194,7 @@ func TestBonusIsTheScoreOfTheNextFrameWhenFrameIsStrike(t *testing.T) {
 	frame.Roll(10)
 	expectedBonus := 9
 
-	actualBonus := frame.Bonus(*nextFrame)
+	actualBonus := frame.Bonus(*nextFrame, Frame{})
 
 	if actualBonus != expectedBonus {
 		t.Errorf("Expected bonus to be %d. Got %d instead.", expectedBonus, actualBonus)

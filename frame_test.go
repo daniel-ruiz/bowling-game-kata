@@ -154,3 +154,34 @@ func TestAStrikeIsCompleteAfterFirstRoll(t *testing.T) {
 		t.Error("Expected frame to be complete, but it isn't.")
 	}
 }
+
+func TestFrameIsStrikeWhenFirstRollKnocksDownAllPins(t *testing.T) {
+	frame := new(Frame)
+
+	frame.Roll(10)
+
+	if !frame.IsStrike() {
+		t.Error("Expected frame to be a strike, but it isn't.")
+	}
+}
+
+func TestIsNotStrike(t *testing.T) {
+	cases := [][2]int{
+		{0, 0},
+		{0, 10},
+		{2, 3},
+		{7, 3},
+	}
+
+	for _, rolls := range cases {
+		frame := new(Frame)
+
+		for _, pinsDown := range rolls {
+			frame.Roll(pinsDown)
+		}
+
+		if frame.IsStrike() {
+			t.Error("Expected frame not to be a strike, but it is.")
+		}
+	}
+}

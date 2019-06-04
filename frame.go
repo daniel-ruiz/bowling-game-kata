@@ -43,6 +43,11 @@ func (frame *Frame) IsSpare() bool {
 	return frame.rolls[0] < maxFrameScore && frame.Score() == maxFrameScore
 }
 
+// IsStrike determines if a frame is a strike.
+func (frame *Frame) IsStrike() bool {
+	return frame.rolls[0] == maxFrameScore
+}
+
 // Bonus calculates bonus of a frame given its next frame in the game.
 func (frame *Frame) Bonus(nextFrame Frame) int {
 	if frame.IsSpare() {

@@ -53,3 +53,16 @@ func TestFrameIsNotComplete(t *testing.T) {
 		t.Error("Frame must not be complete after the first roll, but it is.")
 	}
 }
+
+func TestReturnsFrameScore(t *testing.T) {
+	expectedScore := 9
+	frame := new(Frame)
+
+	frame.Roll(5)
+	frame.Roll(4)
+
+	score := frame.Score()
+	if score != expectedScore {
+		t.Errorf("Expected frame score to be %d. Got %d instead.", expectedScore, score)
+	}
+}

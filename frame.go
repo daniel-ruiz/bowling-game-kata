@@ -16,3 +16,14 @@ func (frame *Frame) Roll(pinsDown int) {
 func (frame *Frame) IsComplete() bool {
 	return frame.rollCount == 2
 }
+
+// Score calculates total score of a frame.
+func (frame *Frame) Score() int {
+	score := 0
+
+	for _, pinsDown := range frame.rolls {
+		score += pinsDown
+	}
+
+	return score
+}

@@ -1,19 +1,16 @@
 package bowlingkata
 
-type game struct {
+// Game keeps the score of a bowling game.
+type Game struct {
 	score int
 }
 
-// New initializes the game struct.
-func New() *game {
-	game := &game{}
-	return game
-}
-
-func (game *game) Score() int {
+// Score returns the total score of a game.
+func (game *Game) Score() int {
 	return game.score
 }
 
-func (game *game) Roll(pinsDown int) {
+// Roll registers a new roll to the game.
+func (game *Game) Roll(pinsDown int) {
 	game.score += pinsDown
 }

@@ -53,3 +53,19 @@ func TestCalculatesGameScoreWhenThereAreManySparesInARow(t *testing.T) {
 		t.Errorf("Expected score to be %d. Actual is %d.", expectedScore, score)
 	}
 }
+
+// func TestCalculatesGameScoreWhenThereIsAStrike(t *testing.T) {
+// 	rolls := []int{10, 3, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+// 	expectedScore := 26
+// 	game := new(Game)
+
+// 	for _, pinsDown := range rolls {
+// 		game.Roll(pinsDown)
+// 	}
+
+// 	score := game.Score()
+
+// 	if score != expectedScore {
+// 		t.Errorf("Expected score to be %d. Actual is %d.", expectedScore, score)
+// 	}
+// }

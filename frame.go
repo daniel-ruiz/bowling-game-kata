@@ -10,8 +10,16 @@ type Frame struct {
 
 // Roll annotates the pins taken down in a frame roll.
 func (frame *Frame) Roll(pinsDown int) {
+	if frame.IsComplete() {
+		return
+	}
+
 	frame.rolls[frame.rollCount] = pinsDown
 	frame.rollCount++
+
+	if pinsDown == maxFrameScore {
+		frame.rollCount = 2
+	}
 }
 
 // IsComplete determines if a frame has finished

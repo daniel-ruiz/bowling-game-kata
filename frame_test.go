@@ -41,6 +41,25 @@ func TestFrameIsCompleteAfterTwoRolls(t *testing.T) {
 	}
 }
 
+func TestFrameIsNotAlteredByARollWhenItIsComplete(t *testing.T) {
+	frame := new(Frame)
+	expectedRolls := [2]int{1, 2}
+
+	frame.Roll(1)
+	frame.Roll(2)
+	frame.Roll(5)
+
+	if !frame.IsComplete() {
+		t.Error("Frame must be complete after 2 rolls, but it isn't.")
+	}
+
+	actualRolls := frame.rolls
+	if actualRolls != expectedRolls {
+		t.Errorf("Expected rolls to be %q. Got %q instead.", expectedRolls, actualRolls)
+	}
+
+}
+
 func TestFrameIsNotComplete(t *testing.T) {
 	frame := new(Frame)
 
@@ -123,5 +142,15 @@ func TestBonusIsZeroWhenFrameIsNotASpare(t *testing.T) {
 
 	if bonus != 0 {
 		t.Errorf("Expected bonus to be zero. Got %d instead.", bonus)
+	}
+}
+
+func TestAStrikeIsCompleteAfterFirstRoll(t *testing.T) {
+	frame := new(Frame)
+
+	frame.Roll(10)
+
+	if !frame.IsComplete() {
+		t.Error("Expected frame to be complete, but it isn't.")
 	}
 }

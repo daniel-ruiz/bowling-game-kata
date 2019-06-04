@@ -13,3 +13,19 @@ func TestInitializesFrame(t *testing.T) {
 		t.Errorf("A frame only has 2 rolls. Found %d instead.", rollsCount)
 	}
 }
+
+func TestUpdatesFrameWhenRolling(t *testing.T) {
+	pinsDown := 5
+	frame := new(Frame)
+
+	frame.Roll(pinsDown)
+
+	if frame.nextRoll != 1 {
+		t.Errorf("Roll count in a frame after first roll must be 1. Got %d instead.", frame.nextRoll)
+	}
+
+	firstRoll := frame.rolls[0]
+	if firstRoll != pinsDown {
+		t.Errorf("Number of pins down in first roll must be %d. Got %d instead.", pinsDown, firstRoll)
+	}
+}

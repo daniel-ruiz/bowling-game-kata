@@ -17,7 +17,7 @@ func (game *Game) Roll(pinsDown int) {
 	game.currentFrame.Roll(pinsDown)
 
 	if game.currentFrame.IsComplete() {
-		game.score += game.previousFrame.Bonus(&game.currentFrame)
+		game.score += game.previousFrame.Bonus(game.currentFrame)
 		game.score += game.currentFrame.Score()
 		game.previousFrame = game.currentFrame
 		game.currentFrame = *new(Frame)

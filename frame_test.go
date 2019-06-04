@@ -100,7 +100,7 @@ func TestIsNotSpare(t *testing.T) {
 }
 
 func TestCalculatesBonusOfASpareWhenGivenNextFrame(t *testing.T) {
-	nextFrame := &Frame{[2]int{1, 2}, 2}
+	nextFrame := Frame{[2]int{1, 2}, 2}
 	frame := &Frame{[2]int{2, 8}, 2}
 	expectedBonus := 1
 
@@ -112,7 +112,7 @@ func TestCalculatesBonusOfASpareWhenGivenNextFrame(t *testing.T) {
 }
 
 func TestBonusIsZeroWhenFrameIsNotASpare(t *testing.T) {
-	nextFrame := &Frame{[2]int{1, 2}, 2}
+	nextFrame := Frame{[2]int{1, 2}, 2}
 	frame := &Frame{[2]int{2, 6}, 2}
 
 	if frame.IsSpare() {

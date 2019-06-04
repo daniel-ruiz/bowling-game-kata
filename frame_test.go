@@ -5,8 +5,8 @@ import "testing"
 func TestInitializesFrame(t *testing.T) {
 	frame := new(Frame)
 
-	if frame.nextRoll != 0 {
-		t.Errorf("Next roll in a new frame must be zero. Got %d instead.", frame.nextRoll)
+	if frame.rollCount != 0 {
+		t.Errorf("Next roll in a new frame must be zero. Got %d instead.", frame.rollCount)
 	}
 
 	if rollsCount := len(frame.rolls); rollsCount != 2 {
@@ -20,8 +20,8 @@ func TestUpdatesFrameWhenRolling(t *testing.T) {
 
 	frame.Roll(pinsDown)
 
-	if frame.nextRoll != 1 {
-		t.Errorf("Roll count in a frame after first roll must be 1. Got %d instead.", frame.nextRoll)
+	if frame.rollCount != 1 {
+		t.Errorf("Roll count in a frame after first roll must be 1. Got %d instead.", frame.rollCount)
 	}
 
 	firstRoll := frame.rolls[0]

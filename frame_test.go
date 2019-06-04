@@ -98,3 +98,30 @@ func TestIsNotSpare(t *testing.T) {
 		}
 	}
 }
+
+func TestCalculatesBonusOfASpareWhenGivenNextFrame(t *testing.T) {
+	nextFrame := &Frame{[2]int{1, 2}, 2}
+	frame := &Frame{[2]int{2, 8}, 2}
+	expectedBonus := 1
+
+	bonus := frame.Bonus(nextFrame)
+
+	if bonus != expectedBonus {
+		t.Errorf("Expected bonus to be %d. Got %d instead.", expectedBonus, bonus)
+	}
+}
+
+func TestBonusIsZeroWhenFrameIsNotASpare(t *testing.T) {
+	nextFrame := &Frame{[2]int{1, 2}, 2}
+	frame := &Frame{[2]int{2, 6}, 2}
+
+	if frame.IsSpare() {
+		t.Error("Expected frame not to be a spare, but it is.")
+	}
+
+	bonus := frame.Bonus(nextFrame)
+
+	if bonus != 0 {
+		t.Errorf("Expected bonus to be zero. Got %d instead.", bonus)
+	}
+}

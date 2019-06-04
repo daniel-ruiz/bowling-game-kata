@@ -34,3 +34,11 @@ func (frame *Frame) Score() int {
 func (frame *Frame) IsSpare() bool {
 	return frame.rolls[0] < maxFrameScore && frame.Score() == maxFrameScore
 }
+
+// Bonus calculates bonus of a frame given its next frame in the game.
+func (frame *Frame) Bonus(nextFrame *Frame) int {
+	if frame.IsSpare() {
+		return nextFrame.rolls[0]
+	}
+	return 0
+}
